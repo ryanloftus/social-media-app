@@ -1,40 +1,11 @@
-import React, { type PropsWithChildren } from 'react';
+import React from 'react';
 import {
     SafeAreaView,
-    ScrollView,
-    StatusBar,
     StyleSheet,
-    Text,
     useColorScheme,
-    View,
-    TextInput,
-    Button,
 } from 'react-native';
-
-import {
-    Colors,
-    DebugInstructions,
-    Header,
-    LearnMoreLinks,
-    ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Login: React.FC<
-    PropsWithChildren<{
-        onLogin: any;
-    }>
-> = ({ children, onLogin }) => {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View>
-            <Text>Login</Text>
-            <TextInput placeholder='Username'></TextInput>
-            <Text>Password</Text>
-            <TextInput placeholder='Password' secureTextEntry={true}></TextInput>
-            <Button title='Login' onPress={onLogin}></Button>
-        </View>
-    );
-};
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Login from './components/login';
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -45,7 +16,7 @@ const App = () => {
 
     return (
         <SafeAreaView style={backgroundStyle}>
-            <Login></Login>
+            <Login onLogin={(u, p) => {}} onSelectCreateAccount={() => {}}></Login>
         </SafeAreaView>
     );
 };
