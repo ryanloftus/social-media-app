@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
     useColorScheme,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Login from './components/login';
+import Login from './components/login/login';
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
@@ -14,11 +14,34 @@ const App = () => {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
 
+    const [userId, setUserId] = useState('');
+    const [activeScreen, setActiveScreen] = useState(Screen.Login);
+
+    const handleLogin = (userId) => {
+        setUserId(userId);
+        setActiveScreen(Screen.Feed);
+    };
+
+    let activeView;
+    if (activeScreen === Screen.Login) {
+        activeView = <Login onLogin={handleLogin} />
+    } else if (activeScreen === Screen.Feed) {
+        activeView = undefined
+    } else {
+        activeView = undefined
+    }
+
     return (
         <SafeAreaView style={backgroundStyle}>
-            <Login onLogin={(u, p) => {}} onSelectCreateAccount={() => {}}></Login>
+            {activeView}
         </SafeAreaView>
     );
+};
+
+enum Screen {
+    Login,
+    Feed,
+    Profile,
 };
 
 const styles = StyleSheet.create({
