@@ -1,15 +1,15 @@
 import React, { type PropsWithChildren, useState } from 'react';
 import { useColorScheme, SafeAreaView, Text } from 'react-native';
 
-const Profile: React.FC<
+const Navbar: React.FC<
     PropsWithChildren<{}>
 > = ({ children }) => {
 
     return (
         <SafeAreaView>
-            <Text>Profile screen here</Text>
+            <Text>Navbar</Text>
         </SafeAreaView>
     );
 };
 
-export default Profile;
+export default Navbar;

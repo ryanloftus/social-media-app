@@ -1,66 +1,31 @@
-import React, { useState } from 'react';
-import {
-    SafeAreaView,
-    StyleSheet,
-    useColorScheme,
-} from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import React from 'react';
+import { useColorScheme } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './components/login/login';
+import Feed from './components/feed/feed';
+import Profile from './components/profile/profile';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
     const isDarkMode = useColorScheme() === 'dark';
 
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
-
-    const [userId, setUserId] = useState('');
-    const [activeScreen, setActiveScreen] = useState(Screen.Login);
-
-    const handleLogin = (userId) => {
-        setUserId(userId);
-        setActiveScreen(Screen.Feed);
-    };
-
-    let activeView;
-    if (activeScreen === Screen.Login) {
-        activeView = <Login onLogin={handleLogin} />
-    } else if (activeScreen === Screen.Feed) {
-        activeView = undefined
-    } else {
-        activeView = undefined
-    }
-
     return (
-        <SafeAreaView style={backgroundStyle}>
-            {activeView}
-        </SafeAreaView>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={Screen.Login}>
+                <Stack.Screen name={Screen.Login} component={Login} />
+                <Stack.Screen name={Screen.Feed} component={Feed} />
+                <Stack.Screen name={Screen.Profile} component={Profile} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
 
-enum Screen {
-    Login,
-    Feed,
-    Profile,
-};
-
-const styles = StyleSheet.create({
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    sectionTitle: {
-        fontSize: 24,
-        fontWeight: '600',
-    },
-    sectionDescription: {
-        marginTop: 8,
-        fontSize: 18,
-        fontWeight: '400',
-    },
-    highlight: {
-        fontWeight: '700',
-    },
-});
+export enum Screen {
+    Login = 'Login',
+    Feed = 'Feed',
+    Profile = 'Profile',
+}
 
 export default App;

@@ -7,7 +7,6 @@ import {
     TextInput,
     Button,
 } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const SignUp: React.FC<
     PropsWithChildren<{
