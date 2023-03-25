@@ -5,7 +5,7 @@ import SignUp from './sign-up';
 import { Screen } from '../../App';
 import { DarkTheme, LightTheme } from '../common/styles';
 
-const Login: React.FC<
+const Register: React.FC<
     PropsWithChildren<{
         navigation: any,
     }>
@@ -13,20 +13,22 @@ const Login: React.FC<
 
     const style = useColorScheme() === 'dark' ? styles.dark : styles.light;
 
-    const handleLogin = (username: string, password: string) => {
-        // call login api
+    const handleCreateAccount = (username: string, password: string) => {
+        // call create account api
         // provide user id context to other components
         navigation.navigate(Screen.Feed);
     }
 
+    // todo: add a welcome new user screen that guides the user to add a profile pic and bio, then start following people
+    // todo: add 2fa and forgot password
     return (
         <SafeAreaView style={style}>
-            <SignIn onSelectCreateAccount={() => navigation.navigate(Screen.Register)} onLogin={handleLogin} />
+            <SignUp onSelectLogin={() => navigation.navigate(Screen.Login)} onCreateAccount={handleCreateAccount} />
         </SafeAreaView>
     );
 };
 
-export default Login;
+export default Register;
 
 const styles = StyleSheet.create({
     dark: {

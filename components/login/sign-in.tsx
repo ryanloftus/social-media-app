@@ -7,6 +7,7 @@ import {
     TextInput,
     Button,
 } from 'react-native';
+import { ButtonColor } from '../common/styles';
 
 const SignIn: React.FC<
     PropsWithChildren<{
@@ -15,20 +16,19 @@ const SignIn: React.FC<
     }>
 > = ({ children, onLogin, onSelectCreateAccount }) => {
 
-    const isDarkMode = useColorScheme() === 'dark';
+    const theme = useColorScheme();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     return (
         <View>
-            <Text>Login</Text>
             <Text>Username</Text>
             <TextInput placeholder='Enter a username' onChangeText={(text) => setUsername(text)}></TextInput>
             <Text>Password</Text>
             <TextInput placeholder='Enter a password' secureTextEntry={true} onChangeText={(text) => setPassword(text)}></TextInput>
-            <Button title='Login' onPress={() => onLogin(username, password)}></Button>
+            <Button title='Login' onPress={() => onLogin(username, password)} color={ButtonColor}></Button>
             <Text>Don't have an account?</Text>
-            <Button title='Create an Account' onPress={onSelectCreateAccount}></Button>
+            <Button title='Create an Account' onPress={onSelectCreateAccount} color={ButtonColor}></Button>
         </View>
     );
 };
