@@ -22,10 +22,38 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => <TabBarIcon name="home-outline" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: 'Messages',
+          tabBarIcon: ({ color }) => <TabBarIcon name="chatbox-outline" color={color} />,
+          headerRight: () => (
+            <Link href="/modal" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <Ionicons 
+                    name="add-circle-outline"
+                    size={25}
+                    color={Colors[colorScheme ?? 'light'].text}
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1}}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="post"
+        options={{
+          title: 'Post',
+          tabBarIcon: ({ color }) => <TabBarIcon name="create-outline" color={color} />,
         }}
       />
       <Tabs.Screen
