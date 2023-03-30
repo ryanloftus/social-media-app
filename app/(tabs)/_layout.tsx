@@ -22,7 +22,7 @@ export default function TabLayout() {
                 tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
             }}>
             <Tabs.Screen
-                name="home"
+                name="(home)"
                 options={{
                     title: 'Home',
                     tabBarIcon: ({ color }) => <TabBarIcon name="home-outline" color={color} />,
